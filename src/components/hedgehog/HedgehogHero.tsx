@@ -4,7 +4,7 @@ const HedgehogHero = () => {
   const APP_URL = "https://hedgehog-app.MYDOMAIN.com/dashboard";
 
   return (
-    <section className="pt-24 pb-16 section-padding bg-gradient-to-br from-white to-neutral-50">
+    <section className="pt-24 pb-16 section-padding bg-gradient-to-br from-green-50 to-green-100">
       <div className="max-w-6xl mx-auto container-padding text-center">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
           The world is full of <span className="text-primary">Risk</span>,<br />
