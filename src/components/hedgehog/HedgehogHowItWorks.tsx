@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
-import step1Image from "../../../assets/step1-connect.webp";
-import step2Image from "../../../assets/step2-exposures.webp";
-import step3Image from "../../../assets/step3-simulate.webp";
-import step4Image from "../../../assets/step4-hedge.webp";
+import step1Image from "../../assets/step1-connect.webp";
+import step2Image from "../../assets/step2-exposures.webp";
+import step3Image from "../../assets/step3-simulate.webp";
+import step4Image from "../../assets/step4-hedge.webp";
 
 const steps = [
   {
