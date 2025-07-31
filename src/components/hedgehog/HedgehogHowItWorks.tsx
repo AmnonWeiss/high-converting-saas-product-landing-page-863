@@ -1,117 +1,247 @@
-import { ArrowRight } from "lucide-react";
-import step1Image from "../../assets/step1-connect.webp";
-import step2Image from "../../assets/step2-exposures.webp";
-import step3Image from "../../assets/step3-simulate.webp";
-import step4Image from "../../assets/step4-hedge.webp";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { Link, Eye, BarChart3, Shield, ChevronDown } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
-    title: "Connect Your System",
-    description: "Seamlessly integrate with QuickBooks, Xero, or other accounting systems in under 5 minutes.",
-    image: step1Image,
-    highlight: "2-minute setup"
+    number: "1",
+    title: "Connect Accounts",
+    description: "Plug in QuickBooks or Xero in 30 seconds.",
+    icon: Link,
+    color: "bg-primary",
+    iconColor: "text-secondary"
   },
   {
-    number: "02", 
-    title: "Auto-Discover Exposures",
-    description: "Our AI automatically identifies and categorizes all your foreign exchange exposures across accounts.",
-    image: step2Image,
-    highlight: "100% automated"
+    number: "2", 
+    title: "See Exposure",
+    description: "Instant dashboard shows open FX risk by currency.",
+    icon: Eye,
+    color: "bg-primary",
+    iconColor: "text-secondary"
   },
   {
-    number: "03",
-    title: "Simulate Risk Scenarios",
-    description: "Run advanced Value at Risk simulations to understand potential losses under market volatility.",
-    image: step3Image,
-    highlight: "Real-time analysis"
+    number: "3",
+    title: "Simulate VaR",
+    description: "AI crunches 1,000 scenarios, surfaces 95% worst-case.",
+    icon: BarChart3,
+    color: "bg-primary", 
+    iconColor: "text-secondary"
   },
   {
-    number: "04",
-    title: "Execute Smart Hedges",
-    description: "Implement AI-recommended hedging strategies instantly through our vetted partner network.",
-    image: step4Image,
-    highlight: "One-click execution"
+    number: "4",
+    title: "Hedge in 1 Click",
+    description: "Lock today's rate and sleep easy.",
+    icon: Shield,
+    color: "bg-primary",
+    iconColor: "text-secondary"
   }
 ];
 
 const HedgehogHowItWorks = () => {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: shouldReduceMotion ? 0 : 20 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    }
+  };
+
+  const iconVariants = {
+    idle: { scale: 1 },
+    hover: { 
+      scale: [1, 1.2, 1],
+      transition: { duration: 0.4 }
+    }
+  };
+
   return (
-    <section className="section-padding bg-gradient-to-br from-neutral-50 to-white">
+    <section className="section-padding bg-white">
       <div className="max-w-6xl mx-auto container-padding">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4">
             How It <span className="text-primary">Works</span>
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Get started with FX risk management in four simple steps. No complex setup, no manual data entry.
+            Get started with FX risk management in four simple steps
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-12">
-          {steps.map((step, index) => (
-            <div key={index} className="relative">
-              <div className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                {/* Image */}
-                <div className="lg:w-1/2">
-                  <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
-                    <div className="relative bg-white rounded-xl p-2">
-                      <img 
-                        src={step.image} 
-                        alt={step.title}
-                        className="w-full h-64 object-cover rounded-lg shadow-lg"
-                      />
-                      <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {step.highlight}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="lg:w-1/2">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-bold mr-4">
+        {/* Desktop Timeline */}
+        <div className="hidden lg:block">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute top-20 left-0 right-0 h-0.5 bg-neutral-200"></div>
+            <div className="absolute top-20 left-0 w-full h-0.5 bg-gradient-to-r from-primary via-secondary to-primary opacity-30"></div>
+            
+            <div className="grid grid-cols-4 gap-8">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={cardVariants}
+                  transition={{
+                    delay: shouldReduceMotion ? 0 : index * 0.2,
+                    duration: shouldReduceMotion ? 0 : 0.6,
+                    ease: "easeOut"
+                  }}
+                  viewport={{ once: true }}
+                  className="relative"
+                  onMouseEnter={() => setHoveredCard(index)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  {/* Timeline connector */}
+                  <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-primary rounded-full z-10"></div>
+                  
+                  {/* Card */}
+                  <motion.div 
+                    className={`bg-white rounded-xl p-6 text-center transition-all duration-300 ${
+                      hoveredCard === index ? 'shadow-xl' : 'shadow-lg'
+                    } hover:shadow-xl`}
+                    whileHover={{ y: -4 }}
+                  >
+                    {/* Step number */}
+                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-lg">
                       {step.number}
                     </div>
-                    <h3 className="text-2xl font-bold">{step.title}</h3>
-                  </div>
-                  <p className="text-neutral-600 text-lg leading-relaxed mb-6">{step.description}</p>
-                  
-                  {index < steps.length - 1 && (
-                    <div className="flex items-center text-primary font-medium">
-                      <span className="mr-2">Next step</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Flow connector for mobile */}
-              {index < steps.length - 1 && (
-                <div className="flex justify-center my-8 lg:hidden">
-                  <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-4 h-4 text-primary rotate-90" />
-                  </div>
-                </div>
-              )}
+                    
+                    {/* Icon */}
+                    <motion.div 
+                      className="mb-4"
+                      variants={iconVariants}
+                      animate={hoveredCard === index ? "hover" : "idle"}
+                    >
+                      <step.icon 
+                        className="w-8 h-8 text-secondary mx-auto" 
+                        aria-label={`${step.title} icon`}
+                      />
+                    </motion.div>
+                    
+                    {/* Content */}
+                    <h3 className="font-semibold text-lg mb-3 text-neutral-900">{step.title}</h3>
+                    <p className="text-neutral-600 text-sm leading-relaxed">{step.description}</p>
+                  </motion.div>
+                </motion.div>
+              ))}
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Accordion */}
+        <div className="lg:hidden space-y-4">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              variants={cardVariants}
+              transition={{
+                delay: shouldReduceMotion ? 0 : index * 0.2,
+                duration: shouldReduceMotion ? 0 : 0.6,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+            >
+              <button
+                onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                className="w-full p-6 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors"
+                aria-expanded={expandedCard === index}
+                aria-controls={`step-${index}-content`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold">
+                    {step.number}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg text-neutral-900">{step.title}</h3>
+                    <p className="text-neutral-600 text-sm">{step.description}</p>
+                  </div>
+                </div>
+                <motion.div
+                  animate={{ rotate: expandedCard === index ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-5 h-5 text-neutral-400" />
+                </motion.div>
+              </button>
+              
+              <motion.div
+                id={`step-${index}-content`}
+                initial={false}
+                animate={{ 
+                  height: expandedCard === index ? "auto" : 0,
+                  opacity: expandedCard === index ? 1 : 0
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 pb-6">
+                  <div className="flex items-center justify-center p-4 bg-neutral-50 rounded-lg">
+                    <step.icon 
+                      className="w-12 h-12 text-secondary" 
+                      aria-label={`${step.title} icon`}
+                    />
+                  </div>
+                  <p className="text-center text-neutral-600 mt-4 text-sm">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {/* CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
           <p className="text-neutral-500 mb-6">Ready to get started?</p>
           <a 
             href="https://hedgehog-app.MYDOMAIN.com/dashboard"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary"
+            className="btn-primary inline-block"
           >
-            Try Hedgehog Free
+            Launch App
           </a>
-        </div>
+        </motion.div>
       </div>
+      
+      {/* Mobile Sticky CTA */}
+      <motion.div 
+        className="lg:hidden fixed bottom-6 left-4 right-4 z-40"
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <a 
+          href="https://hedgehog-app.MYDOMAIN.com/dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary w-full text-center block shadow-lg"
+        >
+          Launch App
+        </a>
+      </motion.div>
     </section>
   );
 };
