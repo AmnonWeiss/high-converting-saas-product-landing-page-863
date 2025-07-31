@@ -16,8 +16,30 @@ const HedgehogHeader = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-neutral-200">
       <nav className="container-padding mx-auto flex h-16 items-center justify-between max-w-7xl">
-        <a href="/" className="text-xl font-bold text-primary flex items-center gap-2">
-          🦔 Hedgehog
+        <a href="/" className="flex items-center gap-3">
+          {/* Sleek fintech hedgehog logo */}
+          <div className="relative">
+            <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center shadow-sm">
+              {/* Stylized hedgehog using geometric shapes */}
+              <div className="relative w-6 h-6">
+                {/* Main body - circle */}
+                <div className="absolute inset-x-1 inset-y-1.5 bg-white rounded-full"></div>
+                {/* Spikes - small triangular elements */}
+                <div className="absolute top-0 left-2 w-1 h-1 bg-white transform rotate-45"></div>
+                <div className="absolute top-0.5 left-1 w-1 h-1 bg-white transform rotate-45"></div>
+                <div className="absolute top-0.5 right-1 w-1 h-1 bg-white transform rotate-45"></div>
+                <div className="absolute top-0 right-2 w-1 h-1 bg-white transform rotate-45"></div>
+                <div className="absolute top-1 left-0.5 w-1 h-1 bg-white transform rotate-45"></div>
+                <div className="absolute top-1 right-0.5 w-1 h-1 bg-white transform rotate-45"></div>
+                {/* Eyes */}
+                <div className="absolute top-2 left-2.5 w-0.5 h-0.5 bg-primary rounded-full"></div>
+                <div className="absolute top-2 right-2.5 w-0.5 h-0.5 bg-primary rounded-full"></div>
+              </div>
+            </div>
+          </div>
+          <div className="text-xl font-semibold text-neutral-900 tracking-tight">
+            Hedgehog
+          </div>
         </a>
         
         <div className="hidden md:flex items-center gap-8">
