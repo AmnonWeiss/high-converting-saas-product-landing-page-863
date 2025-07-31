@@ -1,33 +1,37 @@
-import { Link, Eye, TrendingUp, Shield } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import step1Image from "../../../assets/step1-connect.webp";
+import step2Image from "../../../assets/step2-exposures.webp";
+import step3Image from "../../../assets/step3-simulate.webp";
+import step4Image from "../../../assets/step4-hedge.webp";
 
 const steps = [
   {
     number: "01",
-    title: "Connect QuickBooks/Xero",
-    description: "Seamlessly integrate with your existing accounting system in minutes.",
-    icon: Link,
-    color: "from-primary/20 to-primary/10"
+    title: "Connect Your System",
+    description: "Seamlessly integrate with QuickBooks, Xero, or other accounting systems in under 5 minutes.",
+    image: step1Image,
+    highlight: "2-minute setup"
   },
   {
     number: "02", 
-    title: "See exposures instantly",
-    description: "Automatically discover and categorize all your foreign exchange exposures.",
-    icon: Eye,
-    color: "from-secondary/20 to-secondary/10"
+    title: "Auto-Discover Exposures",
+    description: "Our AI automatically identifies and categorizes all your foreign exchange exposures across accounts.",
+    image: step2Image,
+    highlight: "100% automated"
   },
   {
     number: "03",
-    title: "Simulate VaR",
-    description: "Run Value at Risk simulations to understand potential losses under different scenarios.",
-    icon: TrendingUp,
-    color: "from-primary/20 to-primary/10"
+    title: "Simulate Risk Scenarios",
+    description: "Run advanced Value at Risk simulations to understand potential losses under market volatility.",
+    image: step3Image,
+    highlight: "Real-time analysis"
   },
   {
     number: "04",
-    title: "Execute hedge",
-    description: "Implement recommended hedging strategies with a single click through our partner network.",
-    icon: Shield,
-    color: "from-secondary/20 to-secondary/10"
+    title: "Execute Smart Hedges",
+    description: "Implement AI-recommended hedging strategies instantly through our vetted partner network.",
+    image: step4Image,
+    highlight: "One-click execution"
   }
 ];
 
@@ -44,30 +48,53 @@ const HedgehogHowItWorks = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="space-y-12">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              {/* Step Number */}
-              <div className="text-center mb-6">
-                <div className="relative">
-                  <div className={`w-20 h-20 mx-auto bg-gradient-to-br ${step.color} rounded-full flex items-center justify-center`}>
-                    <step.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    {step.number}
+              <div className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                {/* Image */}
+                <div className="lg:w-1/2">
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
+                    <div className="relative bg-white rounded-xl p-2">
+                      <img 
+                        src={step.image} 
+                        alt={step.title}
+                        className="w-full h-64 object-cover rounded-lg shadow-lg"
+                      />
+                      <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {step.highlight}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* Content */}
-              <div className="text-center">
-                <h3 className="font-semibold text-lg mb-3">{step.title}</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">{step.description}</p>
+
+                {/* Content */}
+                <div className="lg:w-1/2">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-bold mr-4">
+                      {step.number}
+                    </div>
+                    <h3 className="text-2xl font-bold">{step.title}</h3>
+                  </div>
+                  <p className="text-neutral-600 text-lg leading-relaxed mb-6">{step.description}</p>
+                  
+                  {index < steps.length - 1 && (
+                    <div className="flex items-center text-primary font-medium">
+                      <span className="mr-2">Next step</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  )}
+                </div>
               </div>
 
-              {/* Connector Line */}
+              {/* Flow connector for mobile */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-primary/30 to-secondary/30 transform -translate-x-4"></div>
+                <div className="flex justify-center my-8 lg:hidden">
+                  <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-primary rotate-90" />
+                  </div>
+                </div>
               )}
             </div>
           ))}
