@@ -22,7 +22,7 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#FFFFFF",
         foreground: "hsl(var(--foreground))",
         primary: "#28D39A",
         secondary: "#1F9BFF", 
@@ -39,6 +39,9 @@ export default {
           800: "#1F2937",
           900: "#111827",
         },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

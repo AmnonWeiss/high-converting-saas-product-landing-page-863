@@ -1,46 +1,87 @@
-import { ArrowRight, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HedgehogHero = () => {
   const APP_URL = "https://hedgehog-app.MYDOMAIN.com/dashboard";
 
   return (
-    <section className="pt-24 pb-16 section-padding bg-gradient-to-br from-green-50 to-green-100">
-      <div className="max-w-6xl mx-auto container-padding text-center">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
-          The world is full of <span className="text-primary">Risk</span>,<br />
-          Hedgehog helps you <span className="text-secondary">Sleep Better</span> at Night.
-        </h1>
-        <p className="text-lg md:text-xl text-neutral-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Hedgehog analyses your Invoices, Reveals your risks, and allows you to Hedge easily and naturally.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <a 
-            href={APP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary flex items-center justify-center gap-2"
-          >
-            View App
-            <ArrowRight className="w-4 h-4" />
-          </a>
-          <button className="btn-secondary flex items-center justify-center gap-2">
-            <Calendar className="w-4 h-4" />
-            Book Demo
-          </button>
-        </div>
-        
-        {/* Product Animation Placeholder */}
-        <div className="glass-card p-8 max-w-4xl mx-auto">
-          <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                🦔
+    <section className="min-h-screen bg-white flex items-center">
+      <div className="max-w-7xl mx-auto container-padding grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left Content */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-8"
+        >
+          <h1 className="text-5xl lg:text-6xl font-semibold leading-tight">
+            Tame Currency Volatility —{" "}
+            <span className="text-primary">Sleep Better at Night</span>
+          </h1>
+          <p className="text-xl text-neutral-600 leading-relaxed">
+            Hedgehog analyses your invoices, reveals FX risk, and lets you hedge in one click.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a 
+              href={APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-center"
+            >
+              Launch App
+            </a>
+            <button className="btn-secondary">
+              Book Demo
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Right Content - Animated Dashboard */}
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold mb-6">Live Dashboard</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div 
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0 }}
+                  className="bg-neutral-100 rounded-lg p-4"
+                >
+                  <p className="text-sm text-neutral-600">Total Exposure</p>
+                  <p className="text-2xl font-semibold text-primary">€2.4M</p>
+                </motion.div>
+                <motion.div 
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  className="bg-neutral-100 rounded-lg p-4"
+                >
+                  <p className="text-sm text-neutral-600">VaR (95%)</p>
+                  <p className="text-2xl font-semibold text-secondary">€120K</p>
+                </motion.div>
+                <motion.div 
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  className="bg-neutral-100 rounded-lg p-4"
+                >
+                  <p className="text-sm text-neutral-600">Hedged</p>
+                  <p className="text-2xl font-semibold text-primary">78%</p>
+                </motion.div>
+                <motion.div 
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+                  className="bg-neutral-100 rounded-lg p-4"
+                >
+                  <p className="text-sm text-neutral-600">Saved</p>
+                  <p className="text-2xl font-semibold text-secondary">€45K</p>
+                </motion.div>
               </div>
-              <p className="text-neutral-600 font-medium">Interactive Dashboard Preview</p>
-              <p className="text-sm text-neutral-500 mt-2">Real-time FX risk monitoring and hedging recommendations</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

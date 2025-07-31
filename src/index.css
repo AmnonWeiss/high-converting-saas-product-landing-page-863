@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,7 +19,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white rounded-xl shadow-lg border border-neutral-100;
+    @apply bg-white rounded-xl shadow-lg border border-neutral-100 py-20 px-8;
   }
   
   .container-padding {
@@ -28,15 +27,15 @@
   }
 
   .section-padding {
-    @apply py-12 lg:py-20;
+    @apply py-20 lg:py-32;
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-secondary rounded-full px-8 py-3 font-semibold transition-all duration-150 ease-out hover:scale-105;
+    @apply bg-primary text-white hover:bg-secondary rounded-full px-8 py-4 font-semibold transition-all duration-150 ease-out hover:scale-105 transform;
   }
 
   .btn-secondary {
-    @apply bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white rounded-full px-8 py-3 font-semibold transition-all duration-150 ease-out hover:scale-105;
+    @apply bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white rounded-full px-8 py-4 font-semibold transition-all duration-150 ease-out hover:scale-105 transform;
   }
 }
 
