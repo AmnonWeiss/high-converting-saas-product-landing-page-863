@@ -8,6 +8,7 @@ const steps = [
     title: "Connect Accounts",
     description: "Plug in QuickBooks or Xero in 30 seconds.",
     icon: Link,
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop&auto=format",
     color: "bg-primary",
     iconColor: "text-secondary"
   },
@@ -16,6 +17,7 @@ const steps = [
     title: "See Exposure",
     description: "Instant dashboard shows open FX risk by currency.",
     icon: Eye,
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop&auto=format",
     color: "bg-primary",
     iconColor: "text-secondary"
   },
@@ -24,6 +26,7 @@ const steps = [
     title: "Simulate VaR",
     description: "AI crunches 1,000 scenarios, surfaces 95% worst-case.",
     icon: BarChart3,
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop&auto=format",
     color: "bg-primary", 
     iconColor: "text-secondary"
   },
@@ -32,6 +35,7 @@ const steps = [
     title: "Hedge in 1 Click",
     description: "Lock today's rate and sleep easy.",
     icon: Shield,
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop&auto=format",
     color: "bg-primary",
     iconColor: "text-secondary"
   }
@@ -108,31 +112,43 @@ const HedgehogHowItWorks = () => {
                   
                   {/* Card */}
                   <motion.div 
-                    className={`bg-white rounded-xl p-6 text-center transition-all duration-300 ${
+                    className={`bg-white rounded-xl overflow-hidden text-center transition-all duration-300 ${
                       hoveredCard === index ? 'shadow-xl' : 'shadow-lg'
                     } hover:shadow-xl`}
                     whileHover={{ y: -4 }}
                   >
                     {/* Step number */}
-                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-lg">
+                    <div className="absolute top-4 left-4 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold text-sm z-10">
                       {step.number}
                     </div>
                     
-                    {/* Icon */}
-                    <motion.div 
-                      className="mb-4"
-                      variants={iconVariants}
-                      animate={hoveredCard === index ? "hover" : "idle"}
-                    >
-                      <step.icon 
-                        className="w-8 h-8 text-secondary mx-auto" 
-                        aria-label={`${step.title} icon`}
+                    {/* Image */}
+                    <div className="relative h-32 overflow-hidden">
+                      <img 
+                        src={step.image}
+                        alt={`${step.title} illustration`}
+                        className="w-full h-full object-cover"
                       />
-                    </motion.div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
                     
-                    {/* Content */}
-                    <h3 className="font-semibold text-lg mb-3 text-neutral-900">{step.title}</h3>
-                    <p className="text-neutral-600 text-sm leading-relaxed">{step.description}</p>
+                    <div className="p-6">
+                      {/* Icon */}
+                      <motion.div 
+                        className="mb-4"
+                        variants={iconVariants}
+                        animate={hoveredCard === index ? "hover" : "idle"}
+                      >
+                        <step.icon 
+                          className="w-8 h-8 text-secondary mx-auto" 
+                          aria-label={`${step.title} icon`}
+                        />
+                      </motion.div>
+                      
+                      {/* Content */}
+                      <h3 className="font-semibold text-lg mb-3 text-neutral-900">{step.title}</h3>
+                      <p className="text-neutral-600 text-sm leading-relaxed">{step.description}</p>
+                    </div>
                   </motion.div>
                 </motion.div>
               ))}
@@ -190,13 +206,21 @@ const HedgehogHowItWorks = () => {
                 className="overflow-hidden"
               >
                 <div className="px-6 pb-6">
-                  <div className="flex items-center justify-center p-4 bg-neutral-50 rounded-lg">
-                    <step.icon 
-                      className="w-12 h-12 text-secondary" 
-                      aria-label={`${step.title} icon`}
+                  <div className="relative h-32 mb-4 rounded-lg overflow-hidden">
+                    <img 
+                      src={step.image}
+                      alt={`${step.title} illustration`}
+                      className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    <div className="absolute bottom-2 right-2">
+                      <step.icon 
+                        className="w-6 h-6 text-white drop-shadow-md" 
+                        aria-label={`${step.title} icon`}
+                      />
+                    </div>
                   </div>
-                  <p className="text-center text-neutral-600 mt-4 text-sm">
+                  <p className="text-center text-neutral-600 text-sm">
                     {step.description}
                   </p>
                 </div>
