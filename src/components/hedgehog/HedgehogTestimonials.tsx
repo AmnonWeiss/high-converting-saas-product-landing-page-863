@@ -6,21 +6,21 @@ const testimonials = [
     author: "Sarah Chen",
     role: "CFO at Acme Imports",
     company: "Acme Imports",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face"
+    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=150&h=150&fit=crop&crop=face&auto=format"
   },
   {
     quote: "The automated exposure discovery alone saved us from a $50K loss we didn't even know we had. The ROI was immediate.",
     author: "Mark Thompson", 
     role: "Controller at SolarParts EU",
     company: "SolarParts EU",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+    avatar: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=150&h=150&fit=crop&crop=face&auto=format"
   },
   {
     quote: "Finally, FX hedging that doesn't require a PhD in finance. Hedgehog makes complex risk management surprisingly intuitive.",
     author: "Elena Rodriguez",
     role: "CEO at SpiceWorld GmbH", 
     company: "SpiceWorld GmbH",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
+    avatar: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=150&h=150&fit=crop&crop=face&auto=format"
   },
 ];
 
